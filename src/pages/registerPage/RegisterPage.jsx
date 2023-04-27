@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./RegisterPage.module.css";
 import { useState } from "react";
+
 import {
   Stack,
   Button,
@@ -11,6 +12,7 @@ import {
   DialogContentText,
   DialogActions,
 } from "@mui/material";
+import DateSelector from "./dateSelector/DateSelector";
 
 export default function RegisterPage() {
   const [fullName, setFullName] = useState("");
@@ -90,9 +92,9 @@ export default function RegisterPage() {
         onClose={handleClose}
       >
         <DialogTitle>
-          <Stack direction="row">
+          <Stack direction="row" spacing={3}>
             <div>X</div>
-            <div>Step 1 of 5</div>
+            <div style={{ fontWeight: "600" }}>Step 1 of 3</div>
           </Stack>
         </DialogTitle>
         <DialogContent>
@@ -100,17 +102,34 @@ export default function RegisterPage() {
             <h1>Create your account</h1>
             <form className={style.form}>
               <TextField
+                sx={{
+                  border: 0.2,
+                  marginLeft: "5px",
+                  borderRadius: 1,
+                  color: "grey",
+                  pl: 2,
+                  marginBottom: 1.5,
+                }}
+                InputProps={{ disableUnderline: true }}
                 helperText=""
                 id="filled-basic"
                 label="Name"
-                variant="filled"
+                variant="standard"
                 onChange={(e) => setFullName(e.target.value)}
               />
               <TextField
+                sx={{
+                  border: 0.2,
+                  marginLeft: "5px",
+                  borderRadius: 1,
+                  color: "grey",
+                  pl: 2,
+                }}
+                InputProps={{ disableUnderline: true }}
                 helperText=""
                 id="filled-basic"
-                label="Phone"
-                variant="filled"
+                label="Name"
+                variant="standard"
                 onChange={(e) => setFullName(e.target.value)}
               />
             </form>
@@ -124,25 +143,33 @@ export default function RegisterPage() {
             >
               Use email instead
             </div>
-            <div>Date of birth</div>
+            <h3 style={{ marginTop: 60 }}>Date of birth</h3>
             <div>
               This will not be shown publicly. Confirm your own age, even if
               this account is for a business, a pet, or something else.
             </div>
+
+            <DateSelector />
           </div>
         </DialogContent>
 
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Register
+        <DialogActions
+          style={{ justifyContent: "center", margin: "0rem 3rem 2rem 3rem" }}
+        >
+          <Button
+            sx={{ borderRadius: 6, height: 50 }}
+            onClick={handleClose}
+            variant="contained"
+            color="primary"
+            fullWidth
+          >
+            Next
           </Button>
         </DialogActions>
       </Dialog>
 
       <button onClick={() => setStep1(true)}>open popup</button>
+      <DateSelector />
     </div>
   );
 }
