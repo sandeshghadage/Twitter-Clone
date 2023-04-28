@@ -1,15 +1,17 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import style from "./LoginPage.module.css";
 import { TextField, Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Outlet } from "react-router-dom";
 import { TfiTwitterAlt } from "react-icons/tfi";
 import { FcGoogle } from "react-icons/fc";
 import { BsApple } from "react-icons/bs";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
-import { ImCross } from "react-icons/Im";
+import { ImCross } from "react-icons/im";
 
 const btnstyle = {
   backgroundColor: "white",
+  border: "1px solid black",
   fontSize: "15px",
   color: "black",
   borderRadius: "20px",
@@ -29,7 +31,7 @@ const textFieldCss = {
   border: "1px solid blue",
   color: "wheat",
   "& label": {
-    color: "white",
+    color: "black",
   },
   "@media (max-width: 400px)": {
     width: "150px",
@@ -75,13 +77,13 @@ export default function LoginPage() {
           <p className={style.text}>
             <b>Sign in to Twitter</b>
           </p>
-          <Button sx={{ ...btnstyle }} variant="filled">
+          <Button sx={{ ...btnstyle }} variant="contained">
             <span className={style.btnIcon}>
               <FcGoogle />
             </span>
             Sign in with Google
           </Button>
-          <Button sx={{ ...btnstyle }} variant="filled">
+          <Button sx={{ ...btnstyle }} variant="contained">
             <span className={style.btnIcon}>
               <BsApple />
             </span>
@@ -110,7 +112,7 @@ export default function LoginPage() {
             <p>
               Don't have an account?
               <Link to={"/signup"} className={style.Link}>
-                Signup
+                <b>Signup</b>
               </Link>
             </p>
             <Button

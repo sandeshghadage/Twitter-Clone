@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./RegisterPage.module.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -17,13 +16,12 @@ export default function RegisterPage() {
     if (
       fullName === "" ||
       email === "" ||
-      phone === "" ||
-      password !== confPassword
+      (phone === "" && password !== confPassword)
     ) {
       alert("Check all the input field");
     } else {
       const allData = [...user, { fullName, email, phone, password }];
-      //   setUser(allData);
+      // setUser(allData);
       //   console.log(user);
       localStorage.setItem("user", JSON.stringify(allData));
       setEmail("");

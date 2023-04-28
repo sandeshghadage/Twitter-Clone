@@ -7,19 +7,20 @@
     flex-direction: column;
 }
 .wrapper {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     display: flex;
     flex-direction: column;
     height: fit-content; 
     width: 600px;
 }
 .Link{
-    color: whitesmoke;
+    color: rgb(5, 4, 17);
     margin-left: 1rem;
 }
 .text{
     font-size: 7vh;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .icons{
     display: grid;
@@ -27,7 +28,7 @@
     
 }
 .icon1{
-    font-size: 15px;
+    font-size: 1.3rem;
 }
 .icon2{
     grid-column: 3;
@@ -66,6 +67,10 @@
 }
 .container {
     width: 20rem;
+}
+.btnIcon{
+    font-size: 1.4rem;
+    margin-right: 1rem;
 }
 
 @media screen and (max-width: 670px) {
