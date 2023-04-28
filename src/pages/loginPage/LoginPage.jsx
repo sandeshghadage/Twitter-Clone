@@ -123,8 +123,7 @@ export default function LoginPage() {
               Signin
             </Button>
 
-            {enteredEmail}
-            {enteredPassword}
+           
           </div>
         </DialogContent>
       </div>
