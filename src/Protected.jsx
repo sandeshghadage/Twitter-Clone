@@ -14,7 +14,6 @@ function Protected(props) {
 
   return (
     <>
-      abc
       <Components />
     </>
   );

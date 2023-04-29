@@ -4,6 +4,7 @@ import style from "./SideBar.module.css";
 import { ImCross } from "react-icons/im";
 import { useState } from "react";
 import { FaFeatherAlt } from "react-icons/fa";
+import UsersName from "../userName/UsersName";
 
 export default function SideBar() {
   const [isdialog, setIsDialog] = useState(false);
@@ -36,6 +37,9 @@ export default function SideBar() {
       >
         Tweet
       </Button>
+      <div>
+        <UsersName />
+      </div>
       <Dialog open={isdialog}>
         <DialogTitle>
           <span onClick={() => setIsDialog(false)}>

@@ -1,3 +1,7 @@
 export default function SearchBar() {
-  return <div></div>;
+  return (
+    <div>
+      <input placeholder="search" />
+    </div>
+  );
 }

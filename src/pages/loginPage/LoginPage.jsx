@@ -2,7 +2,7 @@
 import { useState } from "react";
 import style from "./LoginPage.module.css";
 import { TextField, Button } from "@mui/material";
-import { Link, useNavigate, Outlet } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TfiTwitterAlt } from "react-icons/tfi";
 import { FcGoogle } from "react-icons/fc";
 import { BsApple } from "react-icons/bs";
@@ -122,8 +122,6 @@ export default function LoginPage() {
             >
               Signin
             </Button>
-
-           
           </div>
         </DialogContent>
       </div>
