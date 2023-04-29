@@ -2,14 +2,14 @@ import { atom } from "recoil";
 
 let datafromLocal = "";
 
-if (localStorage.getItem("user")) {
-  datafromLocal = JSON.parse(localStorage.getItem("user"));
+if (localStorage.getItem('user')) {
+  datafromLocal = JSON.parse(localStorage.getItem('user'));
 }
 
 export const allDataFromLocalStorage = atom({
   key: "allDataFromLocalStorage",
   default: [
-    { name: "sandesh", email: "sandy@gmail.com", password: "sandesh123" },
+    { name: "sandesh", email: "sandy@gmail.com",phone:9876543210, password: "sandesh123" },
     ...datafromLocal,
   ],
 });
