@@ -1,4 +1,9 @@
-.MainContainer{
+/* .MainContainer{
     display: grid;
     grid-template-columns: 2fr 4fr 3fr;
+} */
+
+.MainContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

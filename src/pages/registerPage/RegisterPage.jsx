@@ -1,6 +1,10 @@
 import React from "react";
 import style from "./RegisterPage.module.css";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import joi from "joi-browser";
+import { allDataFromLocalStorage } from "../../localStorage/LocalStorage";
+import { userProfile } from "../../localStorage/LocalStorage";
 
 import {
   Stack,
@@ -16,26 +20,61 @@ import DateSelector from "./dateSelector/DateSelector";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { lightGreen } from "@mui/material/colors";
+
+const userSchema = joi.object({
+  fullName: joi.string().required(),
+  email: joi.string().email().required(),
+  password: joi.string().min(8).required(),
+  // phone:joi.number().max(10)
+});
 
 export default function RegisterPage() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [confPassword, setConfPassword] = useState("");
-  const [user, setUser] = useState([]);
-
+  const [errors, setErrors] = useState({});
   const [step1, setStep1] = useState(false);
   const [step2, setStep2] = useState(false);
   const [step3, setStep3] = useState(false);
   const [isPhone, setIsPhone] = useState(true);
+  const [userFromLocalnRecoil, setUserFromLocalnRecoil] = useRecoilState(
+    allDataFromLocalStorage
+  );
+  const [currentUser, setCurrentUser] = useRecoilState(userProfile);
 
   function handleSubmit(e) {
     // e.stopPropgation();
     e.preventDefault();
-    if (fullName === "" || password === "" || email || phone === "") {
-      alert("Check all the input field");
+    // console.log(email, fullName, password);
+
+    ////////joi Validadation//////////
+    const { error } = userSchema.validate(
+      { email, password, fullName },
+      { abortEarly: false }
+    );
+
+    if (error) {
+      const newErrors = {};
+      localStorage.setItem("user", JSON.stringify(userFromLocalnRecoil));
+
+      setErrors(error.details[0].message);
+      // alert (error.details[0].message)
+
+      console.log(error.details);
+      // console.log (error.details[0].message)
+      //////////////////////////////////////
     } else {
+      const allData = [
+        ...userFromLocalnRecoil,
+        { fullName, email, phone, password },
+      ];
+      setUserFromLocalnRecoil(allData);
+
+      localStorage.setItem("user", JSON.stringify(allData));
+      setCurrentUser({ fullName, email, phone, password });
+      setEmail("");
       setStep1(false), setStep2(true);
     }
   }
@@ -90,6 +129,7 @@ export default function RegisterPage() {
                 variant="filled"
                 onChange={(e) => setFullName(e.target.value)}
               />
+
               {isPhone ? (
                 <TextField
                   InputProps={{ disableUnderline: true }}
