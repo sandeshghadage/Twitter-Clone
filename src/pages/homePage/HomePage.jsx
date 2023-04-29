@@ -13,7 +13,6 @@ export default function HomePage() {
           <SideBar />
         </div>
         <div className={style.MidDiv}>
-          <h1>HomePage</h1>
           <Tweets />
         </div>
         <div className={style.RsideBar}>

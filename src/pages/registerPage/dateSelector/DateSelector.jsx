@@ -21,15 +21,26 @@ function DateSelector() {
     setSelectedYear(event.target.value);
   };
 
+  const textFieldCss = {
+    border: "1px solid #d4d4d4",
+    borderRadius: 1,
+    backgroundColor: "#ffffff",
+    "@media (max-width: 400px)": {
+      width: "150px",
+      marginLeft: "20px",
+    },
+  };
+
   return (
-    <div style={{ marginTop: "2rem" }}>
-      <FormControl variant="filled" sx={{ backgroundColor: "transparent" }}>
+    <div
+      style={{ marginTop: "2rem", display: "flex", gap: "1rem", width: "100%" }}
+    >
+      <FormControl
+        variant="filled"
+        sx={{ backgroundColor: "transparent", ...textFieldCss, width: "50%" }}
+      >
         <InputLabel>Month</InputLabel>
-        <Select
-          style={{ width: "160px" }}
-          value={selectedMonth}
-          onChange={handleMonthChange}
-        >
+        <Select value={selectedMonth} onChange={handleMonthChange}>
           <MenuItem value="">
             <em>--Select Month--</em>
           </MenuItem>
@@ -48,13 +59,12 @@ function DateSelector() {
         </Select>
       </FormControl>
 
-      <FormControl variant="filled" sx={{ backgroundColor: "transparent" }}>
+      <FormControl
+        variant="filled"
+        sx={{ backgroundColor: "transparent", ...textFieldCss, width: "20%" }}
+      >
         <InputLabel>Day</InputLabel>
-        <Select
-          style={{ width: "80px" }}
-          value={selectedDate}
-          onChange={handleDateChange}
-        >
+        <Select value={selectedDate} onChange={handleDateChange}>
           <MenuItem value="">
             <em>--Select Date--</em>
           </MenuItem>
@@ -66,13 +76,12 @@ function DateSelector() {
         </Select>
       </FormControl>
 
-      <FormControl variant="filled" sx={{ backgroundColor: "transparent" }}>
+      <FormControl
+        variant="filled"
+        sx={{ backgroundColor: "transparent", ...textFieldCss, width: "30%" }}
+      >
         <InputLabel>Year</InputLabel>
-        <Select
-          style={{ width: "100px" }}
-          value={selectedYear}
-          onChange={handleYearChange}
-        >
+        <Select value={selectedYear} onChange={handleYearChange}>
           <MenuItem value="">
             <em>--Select Year--</em>
           </MenuItem>

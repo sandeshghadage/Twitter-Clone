@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .MainContainer{
     display: grid;
     grid-template-columns: 1fr 1fr 2fr 2fr 3fr;
@@ -36,3 +37,14 @@
     grid-column: 2/5;
    }
 }
+=======
+.MainContainer {
+  display: grid;
+  grid-template-columns: 2fr 4fr 3fr;
+}
+
+/* .MainContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+} */
+>>>>>>> master
