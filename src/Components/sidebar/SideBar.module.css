@@ -1,63 +1,46 @@
-* {
-    margin: 0;
-    padding: 0;
+.BtnIcon{
+  display: none; 
+}
+.Sidebar{
+  display: flex;
+  flex-direction: column;
+}
+.container:hover{
+  background-color: rgba(131, 173, 210, 0.817);
+  border-radius: 2rem;
+  object-fit: cover;
+}
+.container{
+  display: flex;
+  padding: 0.5rem;
+  gap: 1rem;
+}
+.icons{
+  font-size: 2rem;
+}
+.names{
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+@media screen and (max-width: 1075px){
+  .names{
+    display: none;
   }
-  .mainContainer {
-    background-color: whitesmoke;
+  .Sidebar{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 20rem;
-    padding: 1rem 0;
-  }
-  .BtnIcon{
-    display: none; 
-  }
-  .Sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-    color: black;
-    margin-bottom: 2rem;
-  }
-  .container {
-    display: flex;
-    gap: 2rem;
-    font-size: 1.5rem;
-  }
-  .icons {
-    font-size: 1.8rem;
-  }
-  
-@media screen and (max-width: 1024px){
-  .mainContainer{
-    width: 10rem;
-
+    align-items: flex-end;
   }
   .BtnIcon{
     display: block;
     color: white;
-    font-size: 1.5rem;
     background-color: aqua;
-    padding: 0.6rem;
-    border-radius: 35px;
+    font-size: 1.2rem;
+    padding: 0.8rem;
+    border-radius: 7rem;
+    margin-top: 1rem;
   }
-  .Sidebar{
-    gap: 0;
-  }
-  .container{
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: flex-end;
-    gap: 0;
-  }
-  .icons{
-    font-size: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  .names{
-    visibility: hidden;
+  .UsersName{
+    display: none;
   }
 }
+ 

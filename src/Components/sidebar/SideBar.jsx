@@ -10,15 +10,18 @@ export default function SideBar() {
   const [isdialog, setIsDialog] = useState(false);
 
   const buttonStyle = {
-    width: "12rem",
+    width: "13rem",
     height: "3rem",
+    fontSize: "1rem",
+    fontWeight: "900",
     borderRadius: "2rem",
-    "@media (max-width:1024px)": {
+    textTransform: "none",
+    "@media (max-width:1075px)": {
       display: "none",
     },
   };
   return (
-    <div className={style.mainContainer}>
+    <>
       <div className={style.Sidebar}>
         {Icons.map((ele) => (
           <div key={ele.id} className={style.container}>
@@ -37,7 +40,7 @@ export default function SideBar() {
       >
         Tweet
       </Button>
-      <div>
+      <div className={style.UsersName}>
         <UsersName />
       </div>
       <Dialog open={isdialog}>
@@ -48,6 +51,6 @@ export default function SideBar() {
         </DialogTitle>
         <DialogContent>dtyfyguujgyhgvyjhfdgtygjyfuk</DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 }
