@@ -10,9 +10,12 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  InputAdornment,
 } from "@mui/material";
 import DateSelector from "./dateSelector/DateSelector";
 import { HiOutlineArrowLeft } from "react-icons/hi";
+import { AiOutlineClose } from "react-icons/ai";
+import { AiFillCheckCircle } from "react-icons/ai";
 
 export default function RegisterPage() {
   const [fullName, setFullName] = useState("");
@@ -30,18 +33,10 @@ export default function RegisterPage() {
   function handleSubmit(e) {
     // e.stopPropgation();
     e.preventDefault();
-    console.log(email, fullName, password);
-    // alert(fullName, email, password);
-    // alert("sa");
     if (fullName === "" || password === "" || email || phone === "") {
       alert("Check all the input field");
     } else {
-      // const allData = [...user, { fullName, email, phone, password }];
-      //   setUser(allData);
-      //   console.log(user);
-      // localStorage.setItem("user", JSON.stringify(allData));
-      // setEmail("");
-      // setStep1(false), setStep2(true);
+      setStep1(false), setStep2(true);
     }
   }
 
@@ -67,13 +62,18 @@ export default function RegisterPage() {
       <Dialog
         PaperProps={{
           style: { borderRadius: 15 },
+          sx: {
+            width: "100%",
+            maxHeight: 650,
+          },
         }}
         open={step1}
-        // onClose={handleClose}
       >
         <DialogTitle>
-          <Stack direction="row" spacing={3}>
-            <div onClick={handleClose}>X</div>
+          <Stack direction="row" spacing={2}>
+            <div>
+              <AiOutlineClose className={style.cursor} onClick={handleClose} />
+            </div>
             <div style={{ fontWeight: "600" }}>Step 1 of 3</div>
           </Stack>
         </DialogTitle>
@@ -82,7 +82,7 @@ export default function RegisterPage() {
             <h1>Create your account</h1>
             <div id="form" className={style.form}>
               <TextField
-                sx={{ ...textFieldCss, marginBottom: 1.5 }}
+                sx={{ ...textFieldCss }}
                 InputProps={{ disableUnderline: true }}
                 helperText=""
                 id="filled-basic"
@@ -109,7 +109,6 @@ export default function RegisterPage() {
                   variant="filled"
                   sx={{ ...textFieldCss }}
                   onChange={(e) => {
-                    // console.log(e.target.value);
                     setEmail(e.target.value);
                   }}
                 />
@@ -153,9 +152,9 @@ export default function RegisterPage() {
           style={{ justifyContent: "center", margin: "0rem 3rem 2rem 3rem" }}
         >
           <Button
-            // type="submit"
+            id={style.buttonNext}
             form="form"
-            sx={{ borderRadius: 6, height: 50 }}
+            sx={{ borderRadius: 6, height: 50, backgroundColor: "#0f1419" }}
             onClick={handleSubmit}
             variant="contained"
             color="primary"
@@ -172,12 +171,16 @@ export default function RegisterPage() {
       <Dialog
         PaperProps={{
           style: { borderRadius: 15 },
+          sx: {
+            width: "100%",
+            minHeight: 650,
+          },
         }}
         open={step2}
         // onClose={handleClose}
       >
         <DialogTitle>
-          <Stack direction="row" spacing={3}>
+          <Stack direction="row" spacing={2}>
             <div>
               <HiOutlineArrowLeft
                 onClick={() => {
@@ -189,16 +192,22 @@ export default function RegisterPage() {
           </Stack>
         </DialogTitle>
         <DialogContent>
-          <div className={style.formContainer}>
+          <div className={style.formContainer} style={{ padding: "0em 3em" }}>
             <h1>Customize your experience</h1>
             <h3>Track where you see Twitter content across the web</h3>
-            <div>
+            <div style={{ display: "flex", alignItems: "flex-start" }}>
               <div>
                 Twitter uses this data to personalize your experience. This web
                 browsing history will never be stored with your name, email, or
                 phone number.
               </div>
-              <input style={{ accentColor: "#1d9bf0" }} type="checkbox" />
+              <input
+                style={{
+                  accentColor: "#1d9bf0",
+                }}
+                type="checkbox"
+                checked
+              />
             </div>
             <section className={style.privacySection}>
               By signing up, you agree to our{" "}
@@ -228,10 +237,11 @@ export default function RegisterPage() {
         </DialogContent>
 
         <DialogActions
-          style={{ justifyContent: "center", margin: "0rem 3rem 2rem 3rem" }}
+          style={{ justifyContent: "center", margin: "0rem 4rem 2rem 4rem" }}
         >
           <Button
-            sx={{ borderRadius: 6, height: 50 }}
+            id={style.buttonNext}
+            sx={{ borderRadius: 6, height: 50, backgroundColor: "#0f1419" }}
             onClick={() => {
               setStep2(false), setStep3(true);
             }}
@@ -247,14 +257,19 @@ export default function RegisterPage() {
       {/* Dialog 3 */}
 
       <Dialog
+        id={style.Dialog}
         PaperProps={{
           style: { borderRadius: 15 },
+          sx: {
+            width: "100%",
+            minHeight: 650,
+          },
         }}
         open={step3}
         // onClose={handleClose}
       >
         <DialogTitle>
-          <Stack direction="row" spacing={3}>
+          <Stack direction="row" spacing={2}>
             <div>
               <HiOutlineArrowLeft
                 onClick={() => {
@@ -266,12 +281,25 @@ export default function RegisterPage() {
           </Stack>
         </DialogTitle>
         <DialogContent>
-          <div className={style.formContainer}>
+          <div className={style.formContainer} style={{ padding: "0em 3em" }}>
             <h1>Create your account</h1>
             <form className={style.form}>
               <TextField
-                sx={{ ...textFieldCss, marginBottom: 1.5 }}
-                InputProps={{ disableUnderline: true }}
+                sx={{ ...textFieldCss, marginBottom: "0.5rem" }}
+                InputProps={{
+                  disableUnderline: true,
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <AiFillCheckCircle
+                        style={{
+                          color: "#00ba7c",
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      />
+                    </InputAdornment>
+                  ),
+                }}
                 helperText=""
                 id="filled-basic"
                 label="Name"
@@ -279,17 +307,43 @@ export default function RegisterPage() {
                 onChange={(e) => setFullName(e.target.value)}
               />
               <TextField
-                InputProps={{ disableUnderline: true }}
+                InputProps={{
+                  disableUnderline: true,
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <AiFillCheckCircle
+                        style={{
+                          color: "#00ba7c",
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      />
+                    </InputAdornment>
+                  ),
+                }}
                 helperText=""
                 label="Phone"
                 variant="filled"
-                sx={{ ...textFieldCss }}
+                sx={{ ...textFieldCss, marginBottom: "0.5rem" }}
                 onChange={(e) => {
                   setPhone(e.target.value);
                 }}
               />
               <TextField
-                InputProps={{ disableUnderline: true }}
+                InputProps={{
+                  disableUnderline: true,
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <AiFillCheckCircle
+                        style={{
+                          color: "#00ba7c",
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      />
+                    </InputAdornment>
+                  ),
+                }}
                 helperText=""
                 label="Date of birth"
                 variant="filled"
@@ -300,7 +354,10 @@ export default function RegisterPage() {
               />
             </form>
 
-            <section className={style.privacySection}>
+            <section
+              className={style.privacySection}
+              style={{ fontSize: "14px" }}
+            >
               By signing up, you agree to the{" "}
               <a href="https://twitter.com/en/tos#new" target="_blank">
                 Terms of Service
@@ -331,10 +388,10 @@ export default function RegisterPage() {
         </DialogContent>
 
         <DialogActions
-          style={{ justifyContent: "center", margin: "0rem 3rem 2rem 3rem" }}
+          style={{ justifyContent: "center", margin: "0rem 4rem 2rem 4rem" }}
         >
           <Button
-            sx={{ borderRadius: 6, height: 50 }}
+            sx={{ borderRadius: 6, height: 45, backgroundColor: "#1d9bf0" }}
             onClick={() => {
               setStep1(false), setStep2(true);
             }}
@@ -342,7 +399,7 @@ export default function RegisterPage() {
             color="primary"
             fullWidth
           >
-            Next
+            Sign Up
           </Button>
         </DialogActions>
       </Dialog>
