@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-// import style from "./DateSelector.module.css";
 
 function DateSelector() {
   const [selectedDate, setSelectedDate] = useState("");
@@ -24,28 +23,10 @@ function DateSelector() {
 
   return (
     <div style={{ marginTop: "2rem" }}>
-      <FormControl>
-        <InputLabel>Select a date</InputLabel>
+      <FormControl variant="filled" sx={{ backgroundColor: "transparent" }}>
+        <InputLabel>Month</InputLabel>
         <Select
-          style={{ width: "100px" }}
-          value={selectedDate}
-          onChange={handleDateChange}
-        >
-          <MenuItem value="">
-            <em>--Select Date--</em>
-          </MenuItem>
-          {Array.from({ length: 31 }, (_, i) => i + 1).map((date) => (
-            <MenuItem key={date} value={date}>
-              {date}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-
-      <FormControl>
-        <InputLabel>Select a month</InputLabel>
-        <Select
-          style={{ width: "200px" }}
+          style={{ width: "160px" }}
           value={selectedMonth}
           onChange={handleMonthChange}
         >
@@ -67,10 +48,28 @@ function DateSelector() {
         </Select>
       </FormControl>
 
-      <FormControl>
-        <InputLabel>Select a year</InputLabel>
+      <FormControl variant="filled" sx={{ backgroundColor: "transparent" }}>
+        <InputLabel>Day</InputLabel>
         <Select
-          style={{ width: "120px" }}
+          style={{ width: "80px" }}
+          value={selectedDate}
+          onChange={handleDateChange}
+        >
+          <MenuItem value="">
+            <em>--Select Date--</em>
+          </MenuItem>
+          {Array.from({ length: 31 }, (_, i) => i + 1).map((date) => (
+            <MenuItem key={date} value={date}>
+              {date}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <FormControl variant="filled" sx={{ backgroundColor: "transparent" }}>
+        <InputLabel>Year</InputLabel>
+        <Select
+          style={{ width: "100px" }}
           value={selectedYear}
           onChange={handleYearChange}
         >
@@ -87,10 +86,6 @@ function DateSelector() {
           ))}
         </Select>
       </FormControl>
-
-      {/* <p>
-        Selected Date: {selectedDate} / {selectedMonth} / {selectedYear}
-      </p> */}
     </div>
   );
 }

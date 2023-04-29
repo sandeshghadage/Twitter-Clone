@@ -19,3 +19,16 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.MuiInputBase-input {
+  background: white;
+}
+
+.MuiTextField-root {
+  background: white;
+}
+
+.privacySection > a {
+  color: #1d9bf0;
+  text-decoration: none;
+}

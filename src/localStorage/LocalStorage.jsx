@@ -8,5 +8,13 @@ if (localStorage.getItem("user")) {
 
 export const allDataFromLocalStorage = atom({
   key: "allDataFromLocalStorage",
-  default: [datafromLocal],
+  default: [
+    { name: "sandesh", email: "sandy@gmail.com", password: "sandesh123" },
+    ...datafromLocal,
+  ],
+});
+
+export const userProfile = atom({
+  key: "userProfile",
+  default: {},
 });
