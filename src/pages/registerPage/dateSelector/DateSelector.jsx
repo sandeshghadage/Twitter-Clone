@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-
+// import dob  from "../../../localStorage/LocalStorage";
+import { useRecoilState } from "recoil";
 function DateSelector() {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
+ 
+  
 
   // handle change event for date selection
   const handleDateChange = (event) => {
@@ -14,11 +17,13 @@ function DateSelector() {
   // handle change event for month selection
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
+    setDob(selectedDate,selectedMonth)
   };
 
   // handle change event for year selection
   const handleYearChange = (event) => {
     setSelectedYear(event.target.value);
+ 
   };
 
   const textFieldCss = {

@@ -8,6 +8,8 @@ import { FcGoogle } from "react-icons/fc";
 import { BsApple } from "react-icons/bs";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { ImCross } from "react-icons/im";
+import {emailOnHome} from '../../localStorage/LocalStorage'
+import { useSetRecoilState } from "recoil";
 
 const btnstyle = {
   backgroundColor: "white",
@@ -28,14 +30,16 @@ const btnstyle = {
 };
 
 const textFieldCss = {
-  border: "1px solid blue",
-  color: "wheat",
+  border: "0.01px solid #00acee",
+  backgroundColor: '#ffffff',
+  borderRadius: 1,
   "& label": {
     color: "black",
   },
   "@media (max-width: 400px)": {
     width: "150px",
     marginLeft: "20px",
+
   },
 };
 
@@ -45,7 +49,7 @@ export default function LoginPage() {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [isVisible, setIsVisible] = useState(true);
-
+  const emailOfUserShownOnHome=useSetRecoilState(emailOnHome)
   function handleLogin() {
     if (
       allUsersFromLocal.find(
@@ -53,6 +57,9 @@ export default function LoginPage() {
       )
     ) {
       localStorage.setItem("isLogin", "true");
+      
+      emailOfUserShownOnHome(enteredEmail)
+      
       navigate("/");
     }
   }
@@ -93,22 +100,30 @@ export default function LoginPage() {
             <span className={style.header__center}>or</span>
           </div>
           <div className={style.div}>
-            <TextField
-              label="email"
+                <TextField
+              label={/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(enteredEmail)?<p style={{color:'#00acee'}} >Email</p> :<p style={{color:'red'}}>Email</p>
+            }
               variant="filled"
               sx={{ ...textFieldCss }}
               onChange={(e) => {
                 setEnteredEmail(e.target.value);
               }}
             />
+           {/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(enteredEmail)?'' :<h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Enter a valid Email</h5>
+}
             <TextField
-              label="Password"
+              label={/^(?=.*\d).{8,}$/.test(enteredPassword)?<p style={{color:'#00acee'}} >Password</p> :<p style={{color:'red'}}>Password</p>
+            }
               variant="filled"
               sx={{ ...textFieldCss }}
               onChange={(e) => {
                 setEnteredPassword(e.target.value);
               }}
+             
             />
+              {/^(?=.*\d).{8,}$/
+              .test(enteredPassword)?'' :<h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Password contain 8 letter 1 number</h5>
+}
             <p>
               Don't have an account?
               <Link to={"/signup"} className={style.Link}>

@@ -56,3 +56,43 @@ input[type="checkbox"] {
   background-color: #0f1419;
   opacity: 0.9;
 }
+
+
+@keyframes twitterIcon {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.twitterLogoBeforeSignup {
+  /* Other styles */
+  animation: twitterIcon 2.5s linear infinite;
+}
+
+.loader {
+  height: 5px;
+  width: 1px;
+  position: absolute;
+  animation: rotate0234 3.5s linear infinite;
+}
+
+.loader .dot {
+  top: 30px;
+  height: 7px;
+  width: 7px;
+  background: #268fe4;
+  border-radius: 50%;
+  position: relative;
+}
+
+.text {
+  position: absolute;
+  bottom: -85px;
+  font-size: 25px;
+  font-weight: 400;
+  color: #26aee4;
+}
+
