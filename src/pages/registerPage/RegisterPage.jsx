@@ -35,7 +35,7 @@ export default function RegisterPage() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
-  const [step1, setStep1] = useState(false);
+  const [step1, setStep1] = useState(true);
   const [step2, setStep2] = useState(false);
   const [step3, setStep3] = useState(false);
   const [isPhone, setIsPhone] = useState(true);
