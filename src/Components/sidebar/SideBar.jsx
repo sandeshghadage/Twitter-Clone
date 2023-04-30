@@ -29,10 +29,11 @@ export default function SideBar() {
             <span className={style.names}>{ele.name}</span>
           </div>
         ))}
+
+        <span className={style.BtnIcon}>
+          <FaFeatherAlt onClick={() => setIsDialog(true)} />{" "}
+        </span>
       </div>
-      <span className={style.BtnIcon}>
-        <FaFeatherAlt onClick={() => setIsDialog(true)} />{" "}
-      </span>
       <Button
         sx={{ ...buttonStyle }}
         variant="contained"

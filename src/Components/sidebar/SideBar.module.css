@@ -4,6 +4,7 @@
 .Sidebar{
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 .container:hover{
   background-color: rgba(131, 173, 210, 0.817);
@@ -37,10 +38,17 @@
     font-size: 1.2rem;
     padding: 0.8rem;
     border-radius: 7rem;
-    margin-top: 1rem;
+    margin-top: 0.2rem;
   }
   .UsersName{
     display: none;
   }
 }
- 
+@media screen and (max-width: 550px){
+  .Sidebar{
+    display: flex;
+    flex-direction: row;
+    font-size: 0.5rem;
+    padding: 0 1rem;
+  }
+}

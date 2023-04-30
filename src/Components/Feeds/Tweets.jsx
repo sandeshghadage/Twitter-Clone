@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-key */
 import style from "./Tweets.module.css";
 import AddTweet from "./localComponents/addTweet/AddTweet";
 import HeaderComponent from "./localComponents/headerComponent/HeaderComponent";

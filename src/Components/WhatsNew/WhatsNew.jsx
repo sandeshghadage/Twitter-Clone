@@ -15,7 +15,7 @@ const Tweets = [
   },
   {
     topics: "Politics · Trending",
-    hashTag: "#KejriwalStandsWithChampions",
+    hashTag: "#KejriwalStand",
     tweetsNo: "1,681 Tweets",
   },
   {

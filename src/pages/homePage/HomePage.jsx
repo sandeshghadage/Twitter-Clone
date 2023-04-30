@@ -1,6 +1,6 @@
 import style from "./HomePage.module.css";
 import SideBar from "../../Components/sidebar/SideBar";
-import SearchBar from "../../Components/SearchBar";
+import SearchBar from "../../Components/searchBar/SearchBar";
 import WhatsNew from "../../Components/WhatsNew/WhatsNew";
 import Tweets from "../../Components/Feeds/Tweets";
 import FollowList from "../../Components/followList/FollowList";
