@@ -13,8 +13,9 @@ function Protected(props) {
   });
 
   return (
-    <>
+    <>  
       <Components />
+
     </>
   );
 }

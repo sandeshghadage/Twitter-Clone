@@ -1,10 +1,10 @@
-import React from "react";
+import React, {  useState ,useEffect } from "react";
 import style from "./RegisterPage.module.css";
-import { useState } from "react";
 import { useRecoilState } from "recoil";
 import joi from "joi-browser";
-import { allDataFromLocalStorage } from "../../localStorage/LocalStorage";
-import { userProfile } from "../../localStorage/LocalStorage";
+import {allDataFromLocalStorage} from "../../localStorage/LocalStorage";
+import {userProfile} from "../../localStorage/LocalStorage";
+
 
 import {
   Stack,
@@ -16,17 +16,32 @@ import {
   DialogActions,
   InputAdornment,
 } from "@mui/material";
+
 import DateSelector from "./dateSelector/DateSelector";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { lightGreen } from "@mui/material/colors";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+const textFieldCss = {
+  border: "0.01px solid #00acee",
+  backgroundColor: 'white',
+  borderRadius: 1,
+  "& label": {
+    color: "black",
+  },
+  "@media (max-width: 400px)": {
+    width: "150px",
+    marginLeft: "20px",
 
+  },
+};
 const userSchema = joi.object({
   fullName: joi.string().required(),
   email: joi.string().email().required(),
+  phone:joi.number().max(10),
   password: joi.string().min(8).required(),
-  // phone:joi.number().max(10)
 });
 
 export default function RegisterPage() {
@@ -38,12 +53,14 @@ export default function RegisterPage() {
   const [step1, setStep1] = useState(true);
   const [step2, setStep2] = useState(false);
   const [step3, setStep3] = useState(false);
-  const [isPhone, setIsPhone] = useState(true);
-  const [userFromLocalnRecoil, setUserFromLocalnRecoil] = useRecoilState(
-    allDataFromLocalStorage
-  );
-  const [currentUser, setCurrentUser] = useRecoilState(userProfile);
-
+  const [isPhone, setIsPhone] = useState(false);
+  const [userFromLocalnRecoil, setUserFromLocalnRecoil] = useRecoilState(allDataFromLocalStorage);
+  const [currentUser,setCurrentUser]=useRecoilState(userProfile)
+  const [allError ,setAllError]=useState()
+  // useEffect(()=>{
+  //   setInterval(()=>{setStep1(true)},1000)
+  // },[x])
+const navigate=useNavigate()
   function handleSubmit(e) {
     // e.stopPropgation();
     e.preventDefault();
@@ -58,18 +75,18 @@ export default function RegisterPage() {
     if (error) {
       const newErrors = {};
       localStorage.setItem("user", JSON.stringify(userFromLocalnRecoil));
-
-      setErrors(error.details[0].message);
-      // alert (error.details[0].message)
-
-      console.log(error.details);
-      // console.log (error.details[0].message)
+   
+      setAllError(error.details[0].message);
+      alert (error.details[0].message)
+      toast(error.details[0].message, );
+      
       //////////////////////////////////////
-    } else {
-      const allData = [
-        ...userFromLocalnRecoil,
-        { fullName, email, phone, password },
-      ];
+    }
+     else if(userFromLocalnRecoil.find((ele)=>ele.email===email)){
+      alert('email id have already exist')
+     }
+     else {
+      const allData = [...userFromLocalnRecoil, { fullName, email, phone, password }];
       setUserFromLocalnRecoil(allData);
 
       localStorage.setItem("user", JSON.stringify(allData));
@@ -82,20 +99,14 @@ export default function RegisterPage() {
   const handleClose = () => {
     setStep1(false);
     setStep2(false);
+    navigate('/signin')
   };
 
-  const textFieldCss = {
-    border: "1px solid #d4d4d4",
-    borderRadius: 1,
-    backgroundColor: "#ffffff",
-    "@media (max-width: 400px)": {
-      width: "150px",
-      marginLeft: "20px",
-    },
-  };
+
 
   return (
     <div className={style.registerContainer}>
+      
       {/* dialog 1 */}
 
       <Dialog
@@ -108,6 +119,7 @@ export default function RegisterPage() {
         }}
         open={step1}
       >
+
         <DialogTitle>
           <Stack direction="row" spacing={2}>
             <div>
@@ -118,6 +130,9 @@ export default function RegisterPage() {
         </DialogTitle>
         <DialogContent>
           <div className={style.formContainer}>
+
+          
+
             <h1>Create your account</h1>
             <div id="form" className={style.form}>
               <TextField
@@ -125,10 +140,12 @@ export default function RegisterPage() {
                 InputProps={{ disableUnderline: true }}
                 helperText=""
                 id="filled-basic"
-                label="Name"
+                label={fullName==''?<p style={{color:'red'}} >Name</p> :<p style={{color:'#00acee'}}>Name</p>
+              }
                 variant="filled"
                 onChange={(e) => setFullName(e.target.value)}
               />
+              {fullName=='' ? <h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Enter Name</h5>:''}
 
               {isPhone ? (
                 <TextField
@@ -145,7 +162,8 @@ export default function RegisterPage() {
                 <TextField
                   InputProps={{ disableUnderline: true }}
                   helperText=""
-                  label="Email"
+                  label={/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(email)?<p style={{color:'#00acee'}} >Email</p> :<p style={{color:'red'}}>Email</p>
+                }
                   variant="filled"
                   sx={{ ...textFieldCss }}
                   onChange={(e) => {
@@ -153,6 +171,7 @@ export default function RegisterPage() {
                   }}
                 />
               )}
+              {/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(email)?'' :<h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Enter a valid Email</h5>}
               <div
                 onClick={() => setIsPhone(!isPhone)}
                 style={{
@@ -168,7 +187,8 @@ export default function RegisterPage() {
               <TextField
                 InputProps={{ disableUnderline: true }}
                 helperText=""
-                label="Password"
+                label={/^(?=.*\d).{8,}$/.test(password)?<p style={{color:'#00acee'}} >Password</p> :<p style={{color:'red'}}>Password</p>
+              }
                 type="password"
                 variant="filled"
                 sx={{ ...textFieldCss }}
@@ -176,8 +196,8 @@ export default function RegisterPage() {
                   setPassword(e.target.value);
                 }}
               />
+            {/^(?=.*\d).{8,}$/.test(password)?'':<h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Password Contain 8 character includes 1 number </h5>}
             </div>
-
             <h3 style={{ marginTop: 30 }}>Date of birth</h3>
             <div>
               This will not be shown publicly. Confirm your own age, even if
@@ -204,7 +224,10 @@ export default function RegisterPage() {
           </Button>
         </DialogActions>
       </Dialog>
-      <button onClick={() => setStep1(true)}>open popup</button>
+
+      
+
+     
 
       {/* dialog 2 */}
 
@@ -231,6 +254,7 @@ export default function RegisterPage() {
             <div style={{ fontWeight: "600" }}>Step 2 of 3</div>
           </Stack>
         </DialogTitle>
+        {/* 2nd page of registration */}
         <DialogContent>
           <div className={style.formContainer} style={{ padding: "0em 3em" }}>
             <h1>Customize your experience</h1>
@@ -283,13 +307,13 @@ export default function RegisterPage() {
             id={style.buttonNext}
             sx={{ borderRadius: 6, height: 50, backgroundColor: "#0f1419" }}
             onClick={() => {
-              setStep2(false), setStep3(true);
+              setStep1(false),setStep2(false), setStep3(true),console.log(currentUser);
             }}
             variant="contained"
             color="primary"
             fullWidth
           >
-            Next
+            Next2
           </Button>
         </DialogActions>
       </Dialog>
@@ -344,7 +368,11 @@ export default function RegisterPage() {
                 id="filled-basic"
                 label="Name"
                 variant="filled"
+                disabled
+                value={currentUser.fullName}
+                onClick={()=>{setStep3(false),setStep2(false),setStep1(true)}}
                 onChange={(e) => setFullName(e.target.value)}
+                
               />
               <TextField
                 InputProps={{
@@ -368,6 +396,9 @@ export default function RegisterPage() {
                 onChange={(e) => {
                   setPhone(e.target.value);
                 }}
+                disabled
+                value={currentUser.email}
+                onClick={()=>{setStep3(false),setStep2(false),setStep1(true)}}
               />
               <TextField
                 InputProps={{
@@ -391,6 +422,9 @@ export default function RegisterPage() {
                 onChange={(e) => {
                   setPhone(e.target.value);
                 }}
+                disabled
+                value={'14/02/2002'}
+                onClick={()=>{setStep3(false),setStep2(false),setStep1(true)}}
               />
             </form>
 
@@ -433,7 +467,9 @@ export default function RegisterPage() {
           <Button
             sx={{ borderRadius: 6, height: 45, backgroundColor: "#1d9bf0" }}
             onClick={() => {
-              setStep1(false), setStep2(true);
+              // setStep1(false), setStep2(false);
+              navigate('/signin')
+              
             }}
             variant="contained"
             color="primary"
