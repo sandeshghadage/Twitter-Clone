@@ -63,7 +63,7 @@
     content: "";
     display: block;
     height: 1px;
-    background-color: white;
+    background-color: rgb(8, 7, 7);
 }
 .container {
     width: 20rem;
