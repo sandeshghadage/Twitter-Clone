@@ -1,43 +1,47 @@
-.MainDiv{
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 0 0 0;
-    background-color: rgba(240, 248, 255, 0.829);
-    border-radius: 2rem;
-    /* width: 24rem; */
-    height: fit-content;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+.MainDiv {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0 0 0;
+  background-color: rgba(240, 248, 255, 0.829);
+  border-radius: 2rem;
+  /* width: 24rem; */
+  height: fit-content;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.Div{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+.Div {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
 }
-.Div:hover{
-    background-color: rgba(219, 230, 230, 0.786);
+.Div:hover {
+  background-color: rgba(219, 230, 230, 0.786);
 }
-.heading{
-    font-size: 1.5rem;
-    margin-left: 1rem;
-    font-family: 'Mukta', sans-serif;
-    font-weight: 1000;
+.heading {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  font-family: "Mukta", sans-serif;
+  font-weight: 1000;
 }
-.button{
-    border: none;
-    height: 3rem;
-    font-size: 1rem;
-    text-align: left;
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-    padding-left: 1rem;
-    background-color: none;
-    
+.button {
+  border: none;
+  height: 3rem;
+  font-size: 1rem;
+  text-align: left;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  padding-left: 1rem;
+  background-color: none;
 }
 .button:hover {
-    background-color: rgba(219, 230, 230, 0.786);
-    
+  background-color: rgba(219, 230, 230, 0.786);
 }
-.para1{
-    font-size: 0.8rem;
+.para1 {
+  font-size: 0.8rem;
+}
+
+/* --------------------Testing dialog whats new dot 3 */
+
+.dialog {
+  background-color: rgba(255, 255, 255, 0.58);
 }

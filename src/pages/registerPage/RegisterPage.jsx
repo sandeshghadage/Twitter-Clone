@@ -136,7 +136,7 @@ export default function RegisterPage() {
                 id="filled-basic"
                 label={
                   fullName == "" ? (
-                    <p style={{ color: "red" }}>Name</p>
+                    <p style={{ color: "black" }}>Name</p>
                   ) : (
                     <p style={{ color: "#00acee" }}>Name</p>
                   )
@@ -171,7 +171,7 @@ export default function RegisterPage() {
                     /^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(email) ? (
                       <p style={{ color: "#00acee" }}>Email</p>
                     ) : (
-                      <p style={{ color: "red" }}>Email</p>
+                      <p style={{ color: "black" }}>Email</p>
                     )
                   }
                   variant="filled"
@@ -207,7 +207,7 @@ export default function RegisterPage() {
                   /^(?=.*\d).{8,}$/.test(password) ? (
                     <p style={{ color: "#00acee" }}>Password</p>
                   ) : (
-                    <p style={{ color: "red" }}>Password</p>
+                    <p style={{ color: "black" }}>Password</p>
                   )
                 }
                 type="password"
@@ -339,7 +339,7 @@ export default function RegisterPage() {
             color="primary"
             fullWidth
           >
-            Next2
+            Next
           </Button>
         </DialogActions>
       </Dialog>
