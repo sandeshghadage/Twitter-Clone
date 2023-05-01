@@ -10,13 +10,15 @@ import { BiPoll, BiChevronDown } from "react-icons/bi";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import { CiLocationOn } from "react-icons/ci";
 import { RiEarthFill } from "react-icons/ri";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { tweetMsgAtom, tweetAtom, tweetDialog } from "../../recoil/TweetAtom";
+import { userIdAtom } from "../../recoil/users";
 
 export default function SideBar() {
   const [isdialog, setIsDialog] = useRecoilState(tweetDialog);
   const [tweetMsg, setTweetMsg] = useRecoilState(tweetMsgAtom);
   const [tweet, setTweet] = useRecoilState(tweetAtom);
+  const userId = useRecoilValue(userIdAtom);
 
   const dummyData = {
     id: Date.now(),
@@ -25,7 +27,7 @@ export default function SideBar() {
     image: `https://picsum.photos/1000/500?q=${Date.now()}`,
     tweetedBy: {
       id: "a2b9f2ce-a4bf-45bd-a545-5ee996ffa451",
-      name: "You",
+      name: "",
     },
     likeCount: 0,
     commentCount: 0,
@@ -47,8 +49,10 @@ export default function SideBar() {
   };
 
   function handleTweet() {
+    console.log(userId);
     const newDummy = { ...dummyData };
     newDummy.content = tweetMsg;
+    newDummy.tweetedBy.name = userId;
     setTweet([newDummy, ...tweet]);
     setIsDialog(false);
   }
