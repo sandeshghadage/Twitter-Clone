@@ -36,6 +36,7 @@
 #tweetData {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 10px;
 }
 
@@ -71,6 +72,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 #name {
@@ -83,4 +85,7 @@
 
 .fontTernary {
   color: #7c8994;
+}
+#comment:hover {
+  color: red;
 }

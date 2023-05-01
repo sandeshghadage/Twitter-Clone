@@ -1,7 +1,7 @@
 #mainBox {
   display: flex;
   flex-direction: column;
-  min-height: 14%;
+  min-height: 7rem;
   border: 0.1px solid #f0f0f0;
 }
 
