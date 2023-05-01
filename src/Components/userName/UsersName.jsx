@@ -31,6 +31,13 @@ export default function UsersName() {
         <Dialog open={isDialog}>
           <DialogContent>
             <Button onClick={clickHandler}>Log out</Button>
+            <Button
+              onClick={() => {
+                setIsDialog(false);
+              }}
+            >
+              Cancel
+            </Button>
           </DialogContent>
         </Dialog>
       </div>

@@ -10,7 +10,7 @@ import { HiOutlineUpload } from "react-icons/hi";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { AiOutlineRetweet, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { tweetAtom } from "../../recoil/TweetAtom";
 import { useRecoilState } from "recoil";
 
