@@ -54,28 +54,29 @@ export default function SideBar() {
   }
 
   return (
-    <div className={style.mainContainer}>
-      <div className={style.Sidebar}>
-        {Icons.map((ele) => (
-          <div key={ele.id} className={style.container}>
-            <span className={style.icons}>{ele.icons}</span>
-            <span className={style.names}>{ele.name}</span>
-          </div>
-        ))}
-
-        <span className={style.BtnIcon}>
-          <FaFeatherAlt onClick={() => setIsDialog(true)} />{" "}
+    <>
+      <div className={style.mainContainer}>
+        <div className={style.Sidebar}>
+          {Icons.map((ele) => (
+            <div key={ele.id} className={style.container}>
+              <span className={style.icons2}>{ele.icons}</span>
+              <span className={style.names}>{ele.name}</span>
+            </div>
+          ))}
+          <span className={style.BtnIcon}>
+            <FaFeatherAlt onClick={() => setIsDialog(true)} />{" "}
+          </span>
+        </div>
+        <Button
+          sx={{ ...buttonStyle }}
+          variant="contained"
+          onClick={() => setIsDialog(true)}
+        >
+          Tweet
+        </Button>
+        <span className={style.UsersName}>
+          <UsersName />
         </span>
-      </div>
-      <Button
-        sx={{ ...buttonStyle }}
-        variant="contained"
-        onClick={() => setIsDialog(true)}
-      >
-        Tweet
-      </Button>
-      <div className={style.UsersName}>
-        <UsersName />
       </div>
       {/* <TweetDialog onClick={handleTweet} /> */}
       <Dialog
@@ -166,7 +167,7 @@ export default function SideBar() {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 }
 
