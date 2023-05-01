@@ -15,7 +15,7 @@
   margin: 0 0 1rem 3rem;
 }
 .container:hover {
-  background-color: rgba(131, 173, 210, 0.817);
+  background-color: rgba(224, 214, 214, 0.58);
   border-radius: 2rem;
   object-fit: cover;
 }
@@ -32,11 +32,7 @@
   font-size: 1.3rem;
   font-weight: 700;
 }
-@media screen and (max-width: 1075px) {
-  .mainContainer{
-    display: flex;
-    flex-direction: column;
-  }
+@media screen and (max-width: 1200px) {
   .names {
     display: none;
   }
@@ -48,6 +44,7 @@
     display: flex;
     align-items: flex-end;
     max-width: 100%;
+    margin: 0;
   }
   .BtnIcon {
     display: block;
@@ -60,6 +57,11 @@
   }
   .icons2{
     font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 600px){
+  .Sidebar{
+    margin: 0;
   }
 }
 @media screen and (max-width: 550px) {

@@ -114,9 +114,9 @@ export default function LoginPage() {
             {/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(enteredEmail) ? (
               ""
             ) : (
-              <h5 style={{ margin: "-12px 0 -12px 0", color: "red" }}>
+              <p style={{ margin: "-12px 0 -12px 0", color: "red" }}>
                 Enter a valid Email
-              </h5>
+              </p>
             )}
             <TextField
               type="password"
@@ -136,9 +136,9 @@ export default function LoginPage() {
             {/^(?=.*\d).{8,}$/.test(enteredPassword) ? (
               ""
             ) : (
-              <h5 style={{ margin: "-12px 0 -12px 0", color: "red" }}>
+              <p style={{ margin: "-12px 0 -12px 0", color: "red" }}>
                 Password contain 8 letter 1 number
-              </h5>
+              </p>
             )}
 
             <p style={{ marginTop: "0.5rem" }}>

@@ -41,7 +41,7 @@ export default function SideBar() {
     fontWeight: "900",
     borderRadius: "2rem",
     textTransform: "none",
-    "@media (max-width:1075px)": {
+    "@media (max-width:1200px)": {
       display: "none",
     },
   };
