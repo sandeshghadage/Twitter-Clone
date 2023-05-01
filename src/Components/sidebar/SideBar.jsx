@@ -10,6 +10,7 @@ export default function SideBar() {
   const [isdialog, setIsDialog] = useState(false);
 
   const buttonStyle = {
+    margin: "0 0 0 1.2rem",
     width: "13rem",
     height: "3rem",
     fontSize: "1rem",
@@ -21,7 +22,7 @@ export default function SideBar() {
     },
   };
   return (
-    <>
+    <div className={style.mainContainer}>
       <div className={style.Sidebar}>
         {Icons.map((ele) => (
           <div key={ele.id} className={style.container}>
@@ -52,6 +53,6 @@ export default function SideBar() {
         </DialogTitle>
         <DialogContent>dtyfyguujgyhgvyjhfdgtygjyfuk</DialogContent>
       </Dialog>
-    </>
+    </div>
   );
 }

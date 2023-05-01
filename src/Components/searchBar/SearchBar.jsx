@@ -13,6 +13,7 @@ const options = [
 
 const style = {
   width: "20rem",
+  borderRadiua: "20rem",
   backgroundColor: "white",
   marginTop: "1rem",
   "@media (max-width: 1075px)": {

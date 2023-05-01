@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,9 +14,8 @@ function Protected(props) {
   });
 
   return (
-    <>  
+    <>
       <Components />
-
     </>
   );
 }

@@ -1,10 +1,11 @@
-import React, {  useState ,useEffect } from "react";
+/* eslint-disable no-useless-escape */
+/* eslint-disable react/jsx-no-target-blank */
+import { useState } from "react";
 import style from "./RegisterPage.module.css";
 import { useRecoilState } from "recoil";
 import joi from "joi-browser";
-import {allDataFromLocalStorage} from "../../localStorage/LocalStorage";
-import {userProfile} from "../../localStorage/LocalStorage";
-
+import { allDataFromLocalStorage } from "../../localStorage/LocalStorage";
+import { userProfile } from "../../localStorage/LocalStorage";
 
 import {
   Stack,
@@ -21,12 +22,11 @@ import DateSelector from "./dateSelector/DateSelector";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { AiFillCheckCircle } from "react-icons/ai";
-import { lightGreen } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+
 const textFieldCss = {
   border: "0.01px solid #00acee",
-  backgroundColor: 'white',
+  backgroundColor: "white",
   borderRadius: 1,
   "& label": {
     color: "black",
@@ -34,13 +34,12 @@ const textFieldCss = {
   "@media (max-width: 400px)": {
     width: "150px",
     marginLeft: "20px",
-
   },
 };
 const userSchema = joi.object({
   fullName: joi.string().required(),
   email: joi.string().email().required(),
-  phone:joi.number().max(10),
+  phone: joi.number().max(10),
   password: joi.string().min(8).required(),
 });
 
@@ -49,18 +48,19 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
   const [step1, setStep1] = useState(true);
   const [step2, setStep2] = useState(false);
   const [step3, setStep3] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
-  const [userFromLocalnRecoil, setUserFromLocalnRecoil] = useRecoilState(allDataFromLocalStorage);
-  const [currentUser,setCurrentUser]=useRecoilState(userProfile)
-  const [allError ,setAllError]=useState()
+  const [userFromLocalnRecoil, setUserFromLocalnRecoil] = useRecoilState(
+    allDataFromLocalStorage
+  );
+  const [currentUser, setCurrentUser] = useRecoilState(userProfile);
+  const [allError, setAllError] = useState();
   // useEffect(()=>{
   //   setInterval(()=>{setStep1(true)},1000)
   // },[x])
-const navigate=useNavigate()
+  const navigate = useNavigate();
   function handleSubmit(e) {
     // e.stopPropgation();
     e.preventDefault();
@@ -73,20 +73,21 @@ const navigate=useNavigate()
     );
 
     if (error) {
-      const newErrors = {};
+      // const newErrors = {};
       localStorage.setItem("user", JSON.stringify(userFromLocalnRecoil));
-   
+
       setAllError(error.details[0].message);
-      alert (error.details[0].message)
-      toast(error.details[0].message, );
-      
+      alert(error.details[0].message);
+      toast(error.details[0].message);
+
       //////////////////////////////////////
-    }
-     else if(userFromLocalnRecoil.find((ele)=>ele.email===email)){
-      alert('email id have already exist')
-     }
-     else {
-      const allData = [...userFromLocalnRecoil, { fullName, email, phone, password }];
+    } else if (userFromLocalnRecoil.find((ele) => ele.email === email)) {
+      alert("email id have already exist");
+    } else {
+      const allData = [
+        ...userFromLocalnRecoil,
+        { fullName, email, phone, password },
+      ];
       setUserFromLocalnRecoil(allData);
 
       localStorage.setItem("user", JSON.stringify(allData));
@@ -99,14 +100,11 @@ const navigate=useNavigate()
   const handleClose = () => {
     setStep1(false);
     setStep2(false);
-    navigate('/signin')
+    navigate("/signin");
   };
-
-
 
   return (
     <div className={style.registerContainer}>
-      
       {/* dialog 1 */}
 
       <Dialog
@@ -119,7 +117,6 @@ const navigate=useNavigate()
         }}
         open={step1}
       >
-
         <DialogTitle>
           <Stack direction="row" spacing={2}>
             <div>
@@ -130,9 +127,6 @@ const navigate=useNavigate()
         </DialogTitle>
         <DialogContent>
           <div className={style.formContainer}>
-
-          
-
             <h1>Create your account</h1>
             <div id="form" className={style.form}>
               <TextField
@@ -140,12 +134,23 @@ const navigate=useNavigate()
                 InputProps={{ disableUnderline: true }}
                 helperText=""
                 id="filled-basic"
-                label={fullName==''?<p style={{color:'red'}} >Name</p> :<p style={{color:'#00acee'}}>Name</p>
-              }
+                label={
+                  fullName == "" ? (
+                    <p style={{ color: "red" }}>Name</p>
+                  ) : (
+                    <p style={{ color: "#00acee" }}>Name</p>
+                  )
+                }
                 variant="filled"
                 onChange={(e) => setFullName(e.target.value)}
               />
-              {fullName=='' ? <h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Enter Name</h5>:''}
+              {fullName == "" ? (
+                <h5 style={{ margin: "-12px 0 -12px 0", color: "red" }}>
+                  Enter Name
+                </h5>
+              ) : (
+                ""
+              )}
 
               {isPhone ? (
                 <TextField
@@ -162,8 +167,13 @@ const navigate=useNavigate()
                 <TextField
                   InputProps={{ disableUnderline: true }}
                   helperText=""
-                  label={/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(email)?<p style={{color:'#00acee'}} >Email</p> :<p style={{color:'red'}}>Email</p>
-                }
+                  label={
+                    /^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(email) ? (
+                      <p style={{ color: "#00acee" }}>Email</p>
+                    ) : (
+                      <p style={{ color: "red" }}>Email</p>
+                    )
+                  }
                   variant="filled"
                   sx={{ ...textFieldCss }}
                   onChange={(e) => {
@@ -171,7 +181,13 @@ const navigate=useNavigate()
                   }}
                 />
               )}
-              {/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(email)?'' :<h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Enter a valid Email</h5>}
+              {/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(email) ? (
+                ""
+              ) : (
+                <h5 style={{ margin: "-12px 0 -12px 0", color: "red" }}>
+                  Enter a valid Email
+                </h5>
+              )}
               <div
                 onClick={() => setIsPhone(!isPhone)}
                 style={{
@@ -187,8 +203,13 @@ const navigate=useNavigate()
               <TextField
                 InputProps={{ disableUnderline: true }}
                 helperText=""
-                label={/^(?=.*\d).{8,}$/.test(password)?<p style={{color:'#00acee'}} >Password</p> :<p style={{color:'red'}}>Password</p>
-              }
+                label={
+                  /^(?=.*\d).{8,}$/.test(password) ? (
+                    <p style={{ color: "#00acee" }}>Password</p>
+                  ) : (
+                    <p style={{ color: "red" }}>Password</p>
+                  )
+                }
                 type="password"
                 variant="filled"
                 sx={{ ...textFieldCss }}
@@ -196,7 +217,13 @@ const navigate=useNavigate()
                   setPassword(e.target.value);
                 }}
               />
-            {/^(?=.*\d).{8,}$/.test(password)?'':<h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Password Contain 8 character includes 1 number </h5>}
+              {/^(?=.*\d).{8,}$/.test(password) ? (
+                ""
+              ) : (
+                <h5 style={{ margin: "-12px 0 -12px 0", color: "red" }}>
+                  Password Contain 8 character includes 1 number{" "}
+                </h5>
+              )}
             </div>
             <h3 style={{ marginTop: 30 }}>Date of birth</h3>
             <div>
@@ -224,10 +251,6 @@ const navigate=useNavigate()
           </Button>
         </DialogActions>
       </Dialog>
-
-      
-
-     
 
       {/* dialog 2 */}
 
@@ -307,7 +330,10 @@ const navigate=useNavigate()
             id={style.buttonNext}
             sx={{ borderRadius: 6, height: 50, backgroundColor: "#0f1419" }}
             onClick={() => {
-              setStep1(false),setStep2(false), setStep3(true),console.log(currentUser);
+              setStep1(false),
+                setStep2(false),
+                setStep3(true),
+                console.log(currentUser);
             }}
             variant="contained"
             color="primary"
@@ -370,9 +396,10 @@ const navigate=useNavigate()
                 variant="filled"
                 disabled
                 value={currentUser.fullName}
-                onClick={()=>{setStep3(false),setStep2(false),setStep1(true)}}
+                onClick={() => {
+                  setStep3(false), setStep2(false), setStep1(true);
+                }}
                 onChange={(e) => setFullName(e.target.value)}
-                
               />
               <TextField
                 InputProps={{
@@ -398,7 +425,9 @@ const navigate=useNavigate()
                 }}
                 disabled
                 value={currentUser.email}
-                onClick={()=>{setStep3(false),setStep2(false),setStep1(true)}}
+                onClick={() => {
+                  setStep3(false), setStep2(false), setStep1(true);
+                }}
               />
               <TextField
                 InputProps={{
@@ -423,8 +452,10 @@ const navigate=useNavigate()
                   setPhone(e.target.value);
                 }}
                 disabled
-                value={'14/02/2002'}
-                onClick={()=>{setStep3(false),setStep2(false),setStep1(true)}}
+                value={"14/02/2002"}
+                onClick={() => {
+                  setStep3(false), setStep2(false), setStep1(true);
+                }}
               />
             </form>
 
@@ -468,8 +499,7 @@ const navigate=useNavigate()
             sx={{ borderRadius: 6, height: 45, backgroundColor: "#1d9bf0" }}
             onClick={() => {
               // setStep1(false), setStep2(false);
-              navigate('/signin')
-              
+              navigate("/signin");
             }}
             variant="contained"
             color="primary"

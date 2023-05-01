@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import style from "./LoginPage.module.css";
@@ -8,7 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BsApple } from "react-icons/bs";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { ImCross } from "react-icons/im";
-import {emailOnHome} from '../../localStorage/LocalStorage'
+import { emailOnHome } from "../../localStorage/LocalStorage";
 import { useSetRecoilState } from "recoil";
 
 const btnstyle = {
@@ -31,15 +32,12 @@ const btnstyle = {
 
 const textFieldCss = {
   border: "0.01px solid #00acee",
-  backgroundColor: '#ffffff',
-  borderRadius: 1,
-  "& label": {
-    color: "black",
-  },
+  marginBottom: "0.5rem",
+  backgroundColor: "#ffffff",
+  borderRadius: 2,
   "@media (max-width: 400px)": {
     width: "150px",
     marginLeft: "20px",
-
   },
 };
 
@@ -49,7 +47,8 @@ export default function LoginPage() {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [isVisible, setIsVisible] = useState(true);
-  const emailOfUserShownOnHome=useSetRecoilState(emailOnHome)
+  const emailOfUserShownOnHome = useSetRecoilState(emailOnHome);
+
   function handleLogin() {
     if (
       allUsersFromLocal.find(
@@ -57,16 +56,14 @@ export default function LoginPage() {
       )
     ) {
       localStorage.setItem("isLogin", "true");
-      
-      emailOfUserShownOnHome(enteredEmail)
-      
+      emailOfUserShownOnHome(enteredEmail);
+      localStorage.setItem("currentUser", enteredEmail);
       navigate("/");
     }
   }
 
   const handleDialog = () => {
-    setIsVisible(!isVisible);
-    navigate("/");
+    // setIsVisible(!isVisible);
   };
 
   return (
@@ -100,31 +97,51 @@ export default function LoginPage() {
             <span className={style.header__center}>or</span>
           </div>
           <div className={style.div}>
-                <TextField
-              label={/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(enteredEmail)?<p style={{color:'#00acee'}} >Email</p> :<p style={{color:'red'}}>Email</p>
-            }
+            <TextField
+              label={
+                /^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(enteredEmail) ? (
+                  <p style={{ color: "#00acee" }}>Email</p>
+                ) : (
+                  <p style={{ color: "black" }}>Email</p>
+                )
+              }
               variant="filled"
               sx={{ ...textFieldCss }}
               onChange={(e) => {
                 setEnteredEmail(e.target.value);
               }}
             />
-           {/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(enteredEmail)?'' :<h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Enter a valid Email</h5>
-}
+            {/^\w+([\.-]?\w+)*@(?:\w+\.)+(?:com|in)$/.test(enteredEmail) ? (
+              ""
+            ) : (
+              <h5 style={{ margin: "-12px 0 -12px 0", color: "red" }}>
+                Enter a valid Email
+              </h5>
+            )}
             <TextField
-              label={/^(?=.*\d).{8,}$/.test(enteredPassword)?<p style={{color:'#00acee'}} >Password</p> :<p style={{color:'red'}}>Password</p>
-            }
+              type="password"
+              label={
+                /^(?=.*\d).{8,}$/.test(enteredPassword) ? (
+                  <p style={{ color: "#00acee" }}>Password</p>
+                ) : (
+                  <p style={{ color: "black" }}>Password</p>
+                )
+              }
               variant="filled"
               sx={{ ...textFieldCss }}
               onChange={(e) => {
                 setEnteredPassword(e.target.value);
               }}
-             
             />
-              {/^(?=.*\d).{8,}$/
-              .test(enteredPassword)?'' :<h5 style={{margin:'-12px 0 -12px 0' , color:'red'}}>Password contain 8 letter 1 number</h5>
-}
-            <p>
+            {/^(?=.*\d).{8,}$/.test(enteredPassword) ? (
+              ""
+            ) : (
+              <h5 style={{ margin: "-12px 0 -12px 0", color: "red" }}>
+                Password contain 8 letter 1 number
+              </h5>
+            )}
+
+            <p style={{ marginTop: "0.5rem" }}>
               Don't have an account?
               <Link to={"/signup"} className={style.Link}>
                 <b>Signup</b>
