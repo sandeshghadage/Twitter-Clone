@@ -8,27 +8,48 @@ import { BsChat } from "react-icons/bs";
 import { BiBarChart } from "react-icons/bi";
 import { HiOutlineUpload } from "react-icons/hi";
 import { FiMoreHorizontal } from "react-icons/fi";
-import { AiOutlineRetweet, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineRetweet, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { tweetAtom } from "../../recoil/TweetAtom";
+import { useRecoilState } from "recoil";
 
 export default function Tweets() {
-  const [tweets, setTweets] = useState([]);
+  const [tweets, setTweets] = useRecoilState(tweetAtom);
   useEffect(() => {
     axios
-      .get("http://localhost:5175/tweets.json")
+      .get("http://localhost:5173/tweets.json")
       .then((response) => setTweets(response.data));
   }, []);
+
+  function handleLike(index) {
+    const tweet = { ...tweets[index] };
+    const updated = [...tweets];
+    tweet.isLiked = !tweet.isLiked;
+    tweet.isLiked ? tweet.likeCount++ : tweet.likeCount--;
+    updated[index] = tweet;
+    setTweets(updated);
+  }
+
   return (
     <div className={style.mainBox}>
       <HeaderComponent />
       <div className={style.scroller}>
         <AddTweet />
         <div id={style.showTweetBtn}>Show 1,085 Tweets</div>
-        <Tweet />
+
         <div>
-          {tweets.map((item) => (
-            <Tweet img={item.image} />
+          {tweets.map((item, index) => (
+            <Tweet
+              onClick={() => handleLike(index)}
+              image={item.image}
+              content={item.content}
+              tweetedBy={item.tweetedBy}
+              likeCount={item.likeCount}
+              commentCount={item.commentCount}
+              reTweetsCount={item.reTweetsCount}
+              isLiked={item.isLiked}
+            />
           ))}
         </div>
       </div>
@@ -36,14 +57,22 @@ export default function Tweets() {
   );
 }
 
-function Tweet(props) {
-  // const { item } = item;
+function Tweet({
+  onClick,
+  image,
+  content,
+  tweetedBy,
+  likeCount,
+  commentCount,
+  reTweetsCount,
+  isLiked,
+}) {
   return (
     <div id={style.tweet}>
       <div id={style.content}>
         <div id={style.imgBox}>
           <img
-            src={props.image}
+            src={image}
             alt="profile"
             style={{
               height: "100%",
@@ -62,20 +91,18 @@ function Tweet(props) {
             }}
           >
             <div style={{ display: "flex", gap: "5px" }}>
-              <div id={style.name}>Tesla Owners Silicon Valley</div>
+              <div id={style.name}>{tweetedBy.name}</div>
               <GoVerified style={{ color: "#1d9bf0" }} />
               <div className={style.fontTernary}>@teslaownersSV</div>
               <div className={style.fontTernary}>. 7h</div>
             </div>
             <FiMoreHorizontal className={style.fontSecondary} />
           </div>
-          <div className={style.fontSecondary}>
-            “I deal some memes too!” Elon Musk then looks in his jacket to bring
-            them out. 🤣🤣
-          </div>
+          <div className={style.fontSecondary}>{content}</div>
           <div id={style.feedImg}>
             <img
-              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              onDoubleClick={onClick}
+              src={image}
               alt="feed"
               style={{
                 height: "100%",
@@ -86,17 +113,34 @@ function Tweet(props) {
             />
           </div>
           <div style={{ display: "flex", gap: "2rem", padding: "5px 0px" }}>
-            <div className={style.feedIcons}>
+            <div id={style.comment} className={style.feedIcons}>
               <BsChat className={style.icon} />
-              <div className={style.fontSecondary}>86</div>
+              <div className={style.fontSecondary}>{commentCount}</div>
             </div>
             <div className={style.feedIcons}>
               <AiOutlineRetweet className={style.icon} />
-              <div className={style.fontTernary}>249</div>
+              <div className={style.fontTernary}>{reTweetsCount}</div>
             </div>
-            <div className={style.feedIcons}>
-              <AiOutlineHeart className={style.icon} />
-              <div className={style.fontTernary}>1894</div>
+            <div onClick={onClick}>
+              {isLiked ? (
+                <div className={style.feedIcons}>
+                  <AiFillHeart
+                    className={style.icon}
+                    style={{ color: "#f91880" }}
+                  />
+                  <div
+                    className={style.fontTernary}
+                    style={{ color: "#f91880" }}
+                  >
+                    {likeCount}
+                  </div>
+                </div>
+              ) : (
+                <div className={style.feedIcons}>
+                  <AiOutlineHeart className={style.icon} />
+                  <div className={style.fontTernary}>{likeCount}</div>
+                </div>
+              )}
             </div>
             <div className={style.feedIcons}>
               <BiBarChart className={style.icon} />
@@ -108,6 +152,28 @@ function Tweet(props) {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function TweetOptions() {
+  return (
+    <div class="custom-select" style="width:200px;">
+      <select>
+        <option value="0">Select car:</option>
+        <option value="1">Audi</option>
+        <option value="2">BMW</option>
+        <option value="3">Citroen</option>
+        <option value="4">Ford</option>
+        <option value="5">Honda</option>
+        <option value="6">Jaguar</option>
+        <option value="7">Land Rover</option>
+        <option value="8">Mercedes</option>
+        <option value="9">Mini</option>
+        <option value="10">Nissan</option>
+        <option value="11">Toyota</option>
+        <option value="12">Volvo</option>
+      </select>
     </div>
   );
 }
