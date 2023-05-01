@@ -33,6 +33,10 @@
   font-weight: 700;
 }
 @media screen and (max-width: 1075px) {
+  .mainContainer{
+    display: flex;
+    flex-direction: column;
+  }
   .names {
     display: none;
   }
@@ -65,12 +69,18 @@
     font-size: 0.5rem;
     padding: 0 ;
     margin: 0;
+    gap: 1rem
   }
- 
+  .mainContainer{
+    display: flex;
+    gap: 1rem;
+    margin-right: 1rem;
+    
+  }
   .UsersName{
-    margin-left: 0.3rem;
-    font-size: 0.5rem;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

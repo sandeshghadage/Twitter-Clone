@@ -2,7 +2,7 @@ import { BsThreeDots } from "react-icons/bs";
 import style from "./UsersName.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Dialog, DialogContent } from "@mui/material";
+import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { emailOnHome } from "../../localStorage/LocalStorage";
 
@@ -29,6 +29,9 @@ export default function UsersName() {
       </div>
       <div>
         <Dialog open={isDialog}>
+          <DialogTitle>
+            <p>Do you really want to logout ??</p>
+          </DialogTitle>
           <DialogContent>
             <Button onClick={clickHandler}>Log out</Button>
             <Button
