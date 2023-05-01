@@ -1,9 +1,26 @@
 .container{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: row;
+    margin-top: 2rem;
 }
 .icon{
-    font-size: 1rem;
+    font-size: 2rem;
+}
+.container p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.div{
+    display: flex;
+
+}
+
+@media screen and (max-width: 1075px){
+    .container p {
+        display: none;
+    }
+    .container{
+        display: flex;
+        justify-content: flex-end;
+    }
 }

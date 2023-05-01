@@ -6,7 +6,6 @@ import Tweets from "../../Components/Feeds/Tweets";
 import FollowList from "../../Components/followList/FollowList";
 
 export default function HomePage() {
-  
   return (
     <>
       <div className={style.MainContainer}>

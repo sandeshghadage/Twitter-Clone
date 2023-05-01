@@ -34,6 +34,7 @@ export default function SideBar() {
   };
 
   const buttonStyle = {
+    margin: "0 0 0 1.2rem",
     width: "13rem",
     height: "3rem",
     fontSize: "1rem",
@@ -53,7 +54,7 @@ export default function SideBar() {
   }
 
   return (
-    <>
+    <div className={style.mainContainer}>
       <div className={style.Sidebar}>
         {Icons.map((ele) => (
           <div key={ele.id} className={style.container}>
@@ -165,7 +166,7 @@ export default function SideBar() {
           </div>
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   );
 }
 

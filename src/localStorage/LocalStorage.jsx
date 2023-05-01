@@ -1,16 +1,22 @@
+import { json } from "react-router-dom";
 import { atom } from "recoil";
 
 let datafromLocal = "";
 
-if (localStorage.getItem('user')) {
-  datafromLocal = JSON.parse(localStorage.getItem('user'));
+if (localStorage.getItem("user")) {
+  datafromLocal = JSON.parse(localStorage.getItem("user"));
 }
 
 //all data that are stored in local and new registered user
 export const allDataFromLocalStorage = atom({
   key: "allDataFromLocalStorage",
   default: [
-    { name: "sandesh", email: "sandy@gmail.com",phone:9876543210, password: "sandesh123" },
+    {
+      name: "sandesh",
+      email: "sandy@gmail.com",
+      phone: 9876543210,
+      password: "sandesh123",
+    },
     ...datafromLocal,
   ],
 });
@@ -22,7 +28,7 @@ export const userProfile = atom({
 });
 
 //the email of the user that is logged in and we have to show the data to on home page
-export const emailOnHome=atom({
-  key:'emailOnHome',
-  default:''
-})
+export const emailOnHome = atom({
+  key: "emailOnHome",
+  default: "",
+});

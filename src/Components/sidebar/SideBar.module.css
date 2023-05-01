@@ -4,7 +4,7 @@
 .Sidebar {
   display: flex;
   flex-direction: column;
-  margin: 0;
+  margin: 0 0 1rem 3rem;
 }
 .container:hover {
   background-color: rgba(131, 173, 210, 0.817);
@@ -30,6 +30,7 @@
   .Sidebar {
     display: flex;
     align-items: flex-end;
+    max-width: 100%;
   }
   .BtnIcon {
     display: block;
@@ -49,7 +50,14 @@
     display: flex;
     flex-direction: row;
     font-size: 0.5rem;
-    padding: 0 1rem;
+    padding: 0 ;
+    margin: 0;
+  }
+ 
+  .UsersName{
+    margin-left: 0.3rem;
+    font-size: 0.5rem;
+    display: block;
   }
 }
 
