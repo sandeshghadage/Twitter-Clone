@@ -2,7 +2,7 @@
   border: 0.1px solid #f0f0f0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 #showTweetBtn {
@@ -21,6 +21,7 @@
 
 .scroller {
   overflow: scroll;
+ height: 120vh;
 }
 
 .scroller::-webkit-scrollbar {

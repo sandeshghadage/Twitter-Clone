@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { ImCross } from "react-icons/im";
 import { emailOnHome } from "../../localStorage/LocalStorage";
 import { useSetRecoilState } from "recoil";
+import { userIdAtom } from "../../recoil/users";
 
 const btnstyle = {
   backgroundColor: "white",
@@ -48,6 +49,7 @@ export default function LoginPage() {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   const emailOfUserShownOnHome = useSetRecoilState(emailOnHome);
+  const setUserId = useSetRecoilState(userIdAtom);
 
   function handleLogin() {
     if (
@@ -57,6 +59,10 @@ export default function LoginPage() {
     ) {
       localStorage.setItem("isLogin", "true");
       emailOfUserShownOnHome(enteredEmail);
+      let userId =
+        enteredEmail.substring(0, 4) + Math.floor(Math.random() * 100);
+      setUserId(userId);
+      // console.log(userId);
       localStorage.setItem("currentUser", enteredEmail);
       navigate("/");
     }

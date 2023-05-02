@@ -1,5 +1,18 @@
-import { Autocomplete, TextField } from "@mui/material";
-
+import { Autocomplete, TextField ,InputAdornment } from "@mui/material";
+import { borderRadius } from "@mui/system";
+import { BiSearch } from "react-icons/bi";
+const textFieldCss = {
+  border: "0.01px solid #00acee",
+  backgroundColor: "white",
+  borderRadius: 50,
+  "& label": {
+    color: "black",
+  },
+  "@media (max-width: 400px)": {
+    width: "150px",
+    marginLeft: "20px",
+  },
+};
 const options = [
   "Apple",
   "Banana",
@@ -25,10 +38,26 @@ export default function SearchBar() {
   return (
     <div>
       <Autocomplete
-        sx={{ ...style }}
+        sx={{ ...style , }}
         options={options}
         renderInput={(params) => (
-          <TextField {...params} label="Search Twitter" variant="filled" />
+          <TextField  {...params} sx={{ ...textFieldCss }} InputProps={{
+            disableUnderline: true,
+            endAdornment: (
+              <InputAdornment position="start">
+                <BiSearch
+                  style={{
+                    color: "#798791",
+                    width: "60px",
+                    
+                    height: "30px",
+                    marginBottom:'35px',
+                    
+                  }}
+                />
+              </InputAdornment>
+            ),
+          }} label="Search Twitter" variant="filled" />
         )}
       />
     </div>
