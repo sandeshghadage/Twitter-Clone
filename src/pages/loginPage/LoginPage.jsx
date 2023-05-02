@@ -9,7 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BsApple } from "react-icons/bs";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { ImCross } from "react-icons/im";
-import { emailOnHome } from "../../localStorage/LocalStorage";
+import { emailOnHome } from "../../recoil/users";
 import { useSetRecoilState } from "recoil";
 import { userIdAtom } from "../../recoil/users";
 

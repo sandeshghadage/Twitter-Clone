@@ -4,8 +4,8 @@ import { useState } from "react";
 import style from "./RegisterPage.module.css";
 import { useRecoilState } from "recoil";
 import joi from "joi-browser";
-import { allDataFromLocalStorage } from "../../localStorage/LocalStorage";
-import { userProfile } from "../../localStorage/LocalStorage";
+import { allDataFromLocalStorage } from "../../recoil/users";
+import { userProfile } from "../../recoil/users";
 
 import {
   Stack,
