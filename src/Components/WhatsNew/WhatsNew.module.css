@@ -12,7 +12,7 @@
 .Div{
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
+    padding: 0.8rem;
 }
 .Div:hover{
     background-color: rgba(219, 230, 230, 0.786);
@@ -32,6 +32,7 @@
     border-bottom-right-radius: 2rem;
     padding-left: 1rem;
     background-color: none;
+    color: aqua;
     
 }
 .button:hover {

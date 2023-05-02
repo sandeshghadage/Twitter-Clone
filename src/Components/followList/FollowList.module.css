@@ -42,6 +42,9 @@
     border-radius: 20rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 600;
+    border: none;
+    background-color: black;
+    color: white;
 }
 .button{
     width: 100%;
@@ -50,10 +53,11 @@
     font-size: 1rem;
     text-align: left;
     padding: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     font-family: 'Roboto', sans-serif;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
+    color: aqua;
 
 }
 .button:hover{

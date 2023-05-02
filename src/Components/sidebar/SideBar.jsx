@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Icons from "../../Datas/SidebarData";
 import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import style from "./SideBar.module.css";
