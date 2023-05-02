@@ -64,6 +64,11 @@
     margin: 0;
   }
 }
+@media screen and (max-width: 600px){
+  .Sidebar{
+    margin: 0;
+  }
+}
 @media screen and (max-width: 550px) {
   .Sidebar {
     display: flex;
