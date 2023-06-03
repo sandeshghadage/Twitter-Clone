@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { useRecoilValue } from "recoil";
-import { emailOnHome } from "../../localStorage/LocalStorage";
+import { emailOnHome } from "../../recoil/users";
 
 export default function UsersName() {
   const emailLoginUser = useRecoilValue(emailOnHome);

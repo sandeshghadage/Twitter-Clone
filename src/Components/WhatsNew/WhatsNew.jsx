@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import style from "./WhatsNew.module.css";
+
 import Dropdown from "rsuite/Dropdown";
 import "rsuite/dist/rsuite.min.css";
 import CodeIcon from "@rsuite/icons/Code";
@@ -55,6 +56,7 @@ export default function WhatsNew() {
   const [showInt, setShowInt] = useState(true);
   function handleTweetDelete(index1) {
     console.log(index1);
+
     const newTweet = allNew.filter((ele) => ele.id != index1);
     setAllNew(newTweet);
   }

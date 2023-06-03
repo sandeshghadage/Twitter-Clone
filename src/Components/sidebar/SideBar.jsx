@@ -50,7 +50,8 @@ export default function SideBar() {
   };
 
   function handleTweet() {
-    console.log(userId);
+
+
     const newDummy = { ...dummyData };
     newDummy.content = tweetMsg;
     newDummy.tweetedBy.name = userId;

@@ -21,7 +21,8 @@
 
 .scroller {
   overflow: scroll;
- height: 120vh;
+  height: 120vh;
+
 }
 
 .scroller::-webkit-scrollbar {
