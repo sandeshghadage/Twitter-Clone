@@ -16,7 +16,8 @@ export default function UsersName() {
     setIsDialog(false);
     localStorage.setItem("isLogin", "false");
     navigate("/signin");
-    localStorage.removeItem("");
+    localStorage.removeItem("isLogin");
+    localStorage.removeItem("currentUser");
   };
 
   return (

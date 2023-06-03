@@ -12,6 +12,7 @@ export const userIdAtom = atom({
   default: "",
 });
 
+
 let datafromLocal = "";
 
 if (localStorage.getItem("user")) {
@@ -43,3 +44,4 @@ export const emailOnHome = atom({
   key: "emailOnHome",
   default: "",
 });
+

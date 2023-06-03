@@ -1,8 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import style from "./WhatsNew.module.css";
+
+import Dropdown from "rsuite/Dropdown";
 import "rsuite/dist/rsuite.min.css";
+import CodeIcon from "@rsuite/icons/Code";
+import PageIcon from "@rsuite/icons/Page";
+import DetailIcon from "@rsuite/icons/Detail";
+import FolderFillIcon from "@rsuite/icons/FolderFill";
+import FileDownloadIcon from "@rsuite/icons/FileDownload";
+import FileUploadIcon from "@rsuite/icons/FileUpload";
 import { useState } from "react";
+import { Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 
 const Tweets = [
   {
@@ -37,11 +46,17 @@ const Tweets = [
   },
 ];
 
+const stylePop = {
+  background: "transparent",
+};
+
 export default function WhatsNew() {
+  // const [pop, setPop] = useState(false);
   const [allNew, setAllNew] = useState(Tweets);
   const [showInt, setShowInt] = useState(true);
   function handleTweetDelete(index1) {
-    // console.log(index1);
+    console.log(index1);
+
     const newTweet = allNew.filter((ele) => ele.id != index1);
     setAllNew(newTweet);
   }
@@ -52,7 +67,7 @@ export default function WhatsNew() {
         <div className={style.Div} key={ele.hashTag}>
           <div>
             <p className={style.para1}>{ele.topics}</p>
-            <h4 style={{ fontWeight: "800" }}>{ele.hashTag}</h4>
+            <p style={{ fontWeight: "800" }}>{ele.hashTag}</p>
             <p className={style.para1}>{ele.tweetsNo}</p>
           </div>
           {showInt && (
