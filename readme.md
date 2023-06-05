@@ -16,6 +16,10 @@ The project utilizes the following dependencies:
 - Recoil: A state management library for managing application state in React.
 - Material UI: A popular UI component library for React, providing pre-designed and customizable components.
 
+## Deployed link 
+
+You can access the project at [https://neon-pika-84988e.netlify.app/.]
+
 ## Getting Started
 
 To get started with the project, follow the steps below:
