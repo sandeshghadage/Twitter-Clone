@@ -18,7 +18,7 @@ export default function Tweets() {
   const [tweets, setTweets] = useRecoilState(tweetAtom);
   useEffect(() => {
     axios
-      .get("http://localhost:5173/tweets.json")
+      .get("https://neon-pika-84988e.netlify.app/tweets.json")
       .then((response) => setTweets(response.data));
   }, []);
 
